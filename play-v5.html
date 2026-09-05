@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl Arena V5</title><style>html,body{margin:0;height:100%;background:#0d1320;color:#fff;font-family:Arial,sans-serif;display:grid;place-items:center;text-align:center}#status{padding:24px;max-width:320px;line-height:1.4}button{margin-top:12px;padding:12px 18px;border:0;border-radius:10px;background:#ffd34f;font-weight:900}</style></head><body><div id="status">Caricamento StarBrawl Arena V5...</div><script>
+(async function(){
+  const status=document.getElementById('status');
+  try{
+    const res=await fetch('./play-v4.html?v=birra-base',{cache:'no-store'});
+    if(!res.ok) throw new Error('Impossibile caricare la base V4');
+    let html=await res.text();
+
+    html=html.replace(/StarBrawl Arena V4/g,'StarBrawl Arena V5');
+    html=html.replace(/STAR<b>BRAWL<\/b> V4/g,'STAR<b>BRAWL</b> V5');
+    html=html.replace('La squadra attuale entra subito in partita. Sblocca altri combattenti sulla Strada dei Trofei e usa il tasto USA sulle loro carte per cambiare squadra.','La squadra attuale entra subito in partita. Nuovo combattente: Birra, rarità Tuff Rainbow, con faccia da cane e danni altissimi. Ora gli altri hanno volti misti robot, umani e animali.');
+
+    html=html.replace('.gun{left:55px;top:38px;width:18px;height:8px;background:var(--a);border-radius:4px}',
+      '.gun{left:55px;top:38px;width:18px;height:8px;background:var(--a);border-radius:4px}.eye,.visor,.muzzle,.ear,.antenna,.snout,.brow{position:absolute}.eye{width:4px;height:4px;border-radius:50%;background:#141414;top:18px}.e1{left:29px}.e2{left:40px}.visor{left:20px;top:15px;width:32px;height:11px;border-radius:8px;background:#95f4ff;box-shadow:0 0 0 2px rgba(0,0,0,.15) inset}.muzzle{left:26px;top:21px;width:20px;height:12px;border-radius:9px;background:#f1d2ae}.snout{left:25px;top:20px;width:22px;height:14px;border-radius:10px;background:#d8b08a}.ear{width:10px;height:12px;top:2px;background:#d7ab82}.earL{left:18px;border-radius:8px 8px 2px 2px;transform:rotate(-20deg)}.earR{left:43px;border-radius:8px 8px 2px 2px;transform:rotate(20deg)}.antenna{left:33px;top:0;width:4px;height:10px;background:#8aa2bd;border-radius:3px}.antenna:after{content:"";position:absolute;left:-3px;top:-5px;width:10px;height:10px;border-radius:50%;background:#ffd34f}.brow{left:24px;top:16px;width:24px;height:3px;background:#644931;border-radius:3px}');
+
+    html=html.replace(/var fighters=\[[\s\S]*?\];\nvar rewards=/,
+`var fighters=[
+{id:'bolt',name:'Bolt',rar:'Comune',unlock:0,hp:120,dmg:18,range:125,speed:1.52,cd:620,c:'#54b8ff',a:'#193f73',face:'robot'},
+{id:'moss',name:'Moss',rar:'Comune',unlock:0,hp:160,dmg:14,range:88,speed:1.22,cd:720,c:'#65c86b',a:'#2c6233',face:'animal'},
+{id:'birra',name:'Birra',rar:'Tuff Rainbow',unlock:0,hp:148,dmg:62,range:142,speed:1.58,cd:710,c:'#ffb347',a:'#7a4314',face:'dog'},
+{id:'vexa',name:'Vexa',rar:'Raro',unlock:80,hp:105,dmg:24,range:155,speed:1.34,cd:850,c:'#bc6cff',a:'#4a226e',face:'human'},
+{id:'rivet',name:'Rivet',rar:'Raro',unlock:160,hp:145,dmg:17,range:108,speed:1.20,cd:580,c:'#ef8b48',a:'#6d371c',face:'robot'},
+{id:'nyra',name:'Nyra',rar:'Epico',unlock:280,hp:100,dmg:31,range:145,speed:1.58,cd:980,c:'#ff6f8d',a:'#75273b',face:'human'},
+{id:'glint',name:'Glint',rar:'Epico',unlock:420,hp:125,dmg:20,range:145,speed:1.38,cd:690,c:'#73e6d1',a:'#1f6d62',face:'robot'},
+{id:'brakka',name:'Brakka',rar:'Mitico',unlock:600,hp:190,dmg:27,range:82,speed:1.06,cd:920,c:'#d65454',a:'#5d1e1e',face:'animal'},
+{id:'astra',name:'Astra',rar:'Leggendario',unlock:800,hp:115,dmg:36,range:168,speed:1.48,cd:1020,c:'#f0c747',a:'#705d15',face:'human'},
+{id:'kairo',name:'Kairo',rar:'Raro',unlock:1050,hp:132,dmg:22,range:125,speed:1.46,cd:650,c:'#42d6c8',a:'#165b57',face:'robot'},
+{id:'cinder',name:'Cinder',rar:'Epico',unlock:1350,hp:112,dmg:29,range:140,speed:1.42,cd:810,c:'#ff884d',a:'#9b3518',face:'animal'},
+{id:'hex',name:'Hex',rar:'Mitico',unlock:1650,hp:108,dmg:34,range:165,speed:1.31,cd:920,c:'#9d72ff',a:'#3d2478',face:'robot'},
+{id:'warden',name:'Warden',rar:'Epico',unlock:2000,hp:180,dmg:23,range:105,speed:1.12,cd:700,c:'#7b8ca8',a:'#344259',face:'robot'},
+{id:'lumi',name:'Lumi',rar:'Raro',unlock:2400,hp:118,dmg:25,range:155,speed:1.44,cd:760,c:'#b7f4ff',a:'#347a8c',face:'human'},
+{id:'onyx',name:'Onyx',rar:'Mitico',unlock:2850,hp:150,dmg:32,range:100,speed:1.36,cd:850,c:'#4e5362',a:'#11141b',face:'animal'},
+{id:'nova',name:'Nova',rar:'Leggendario',unlock:3350,hp:105,dmg:40,range:178,speed:1.52,cd:1060,c:'#ffda72',a:'#805b11',face:'human'},
+{id:'vanta',name:'Vanta',rar:'Leggendario',unlock:3900,hp:138,dmg:35,range:138,speed:1.62,cd:890,c:'#6c4f91',a:'#241431',face:'animal'}];
+var rewards=`);
+
+    html=html.replace("var rewards=[[0,'coins',100],[30,'power',50],[80,'fighter','vexa'],[120,'coins',160],[160,'fighter','rivet'],[220,'power',90],[280,'fighter','nyra'],[350,'coins',260],[420,'fighter','glint'],[500,'power',140],[600,'fighter','brakka'],[700,'coins',400],[800,'fighter','astra'],[1050,'fighter','kairo'],[1350,'fighter','cinder'],[1650,'fighter','hex'],[2000,'fighter','warden'],[2400,'fighter','lumi'],[2850,'fighter','onyx'],[3350,'fighter','nova'],[3900,'fighter','vanta']];",
+      "var rewards=[[0,'fighter','birra'],[0,'coins',100],[30,'power',50],[80,'fighter','vexa'],[120,'coins',160],[160,'fighter','rivet'],[220,'power',90],[280,'fighter','nyra'],[350,'coins',260],[420,'fighter','glint'],[500,'power',140],[600,'fighter','brakka'],[700,'coins',400],[800,'fighter','astra'],[1050,'fighter','kairo'],[1350,'fighter','cinder'],[1650,'fighter','hex'],[2000,'fighter','warden'],[2400,'fighter','lumi'],[2850,'fighter','onyx'],[3350,'fighter','nova'],[3900,'fighter','vanta']];");
+    html=html.replace("var rarColor={Comune:'#79d679',Raro:'#69a8ff',Epico:'#c27aff',Mitico:'#ff6dc1',Leggendario:'#ffd45b'};",
+      "var rarColor={Comune:'#79d679',Raro:'#69a8ff',Epico:'#c27aff',Mitico:'#ff6dc1',Leggendario:'#ffd45b','Tuff Rainbow':'#ff9df4'};");
+    html=html.replace("var state={cups:0,coins:100,power:0,unlocked:['bolt','moss'],selected:['bolt','moss'],levels:{bolt:1,moss:1},charCups:{bolt:0,moss:0},claims:[]};",
+      "var state={cups:0,coins:100,power:0,unlocked:['bolt','moss','birra'],selected:['bolt','moss'],levels:{bolt:1,moss:1,birra:1},charCups:{bolt:0,moss:0,birra:0},claims:[0]};");
+    html=html.replace("if(!Array.isArray(state.unlocked))state.unlocked=['bolt','moss'];if(!includes(state.unlocked,'bolt'))state.unlocked.unshift('bolt');if(!includes(state.unlocked,'moss'))state.unlocked.push('moss');if(!Array.isArray(state.selected))state.selected=['bolt','moss'];",
+      "if(!Array.isArray(state.unlocked))state.unlocked=['bolt','moss','birra'];if(!includes(state.unlocked,'bolt'))state.unlocked.unshift('bolt');if(!includes(state.unlocked,'moss'))state.unlocked.push('moss');if(!includes(state.unlocked,'birra'))state.unlocked.push('birra');if(!Array.isArray(state.selected))state.selected=['bolt','moss'];");
+    html=html.replace(/function art\(ch\)\{[^]*?\nfunction card\(ch\)\{/, `function art(ch){var face='';if(ch.face==='robot'){face='<i class="visor"></i><i class="antenna"></i>';}else if(ch.face==='dog'){face='<i class="ear earL"></i><i class="ear earR"></i><i class="eye e1"></i><i class="eye e2"></i><i class="snout"></i>';}else if(ch.face==='animal'){face='<i class="ear earL"></i><i class="ear earR"></i><i class="eye e1"></i><i class="eye e2"></i><i class="muzzle"></i>';}else{face='<i class="eye e1"></i><i class="eye e2"></i><i class="brow"></i>';};return '<div class="doll" style="--c:'+ch.c+';--a:'+ch.a+'"><i class="head"></i>'+face+'<i class="body"></i><i class="arm a1"></i><i class="arm a2"></i><i class="leg l1"></i><i class="leg l2"></i><i class="gun"></i></div>'}
+function card(ch){`);
+
+    document.open();
+    document.write(html);
+    document.close();
+  }catch(err){
+    status.innerHTML='Errore nel caricamento di StarBrawl Arena V5.<br><small>'+String(err)+'</small><br><button onclick="location.reload()">Riprova</button>';
+  }
+})();
+</script></body></html>
