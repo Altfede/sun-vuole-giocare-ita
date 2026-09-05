@@ -45,6 +45,7 @@ var rewards=`);
       "if(!Array.isArray(state.unlocked))state.unlocked=['bolt','moss','birra'];if(!includes(state.unlocked,'bolt'))state.unlocked.unshift('bolt');if(!includes(state.unlocked,'moss'))state.unlocked.push('moss');if(!includes(state.unlocked,'birra'))state.unlocked.push('birra');if(!Array.isArray(state.selected))state.selected=['bolt','moss'];");
     html=html.replace(/function art\(ch\)\{[^]*?\nfunction card\(ch\)\{/, `function art(ch){var face='';if(ch.face==='robot'){face='<i class="visor"></i><i class="antenna"></i>';}else if(ch.face==='dog'){face='<i class="ear earL"></i><i class="ear earR"></i><i class="eye e1"></i><i class="eye e2"></i><i class="snout"></i>';}else if(ch.face==='animal'){face='<i class="ear earL"></i><i class="ear earR"></i><i class="eye e1"></i><i class="eye e2"></i><i class="muzzle"></i>';}else{face='<i class="eye e1"></i><i class="eye e2"></i><i class="brow"></i>';};return '<div class="doll" style="--c:'+ch.c+';--a:'+ch.a+'"><i class="head"></i>'+face+'<i class="body"></i><i class="arm a1"></i><i class="arm a2"></i><i class="leg l1"></i><i class="leg l2"></i><i class="gun"></i></div>'}
 function card(ch){`);
+    html=html.replace("state.coins+=tie?10:(win?30:12);state.power+=tie?2:(win?6:3);","state.coins+=tie?15:(win?60:12);state.power+=tie?4:(win?15:3);");
 
     document.open();
     document.write(html);
