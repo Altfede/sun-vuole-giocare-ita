@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>StarBrawl Arena V5.14</title>
+<style>html,body{margin:0;height:100%;background:#0d1320;color:#fff;font-family:Arial,sans-serif}#load{height:100%;display:grid;place-items:center;font-weight:900}</style>
+</head>
+<body>
+<div id="load">Caricamento StarBrawl Arena V5.14...</div>
+<script>
+fetch('./play-v513.html?v=v514-base').then(function(r){return r.text()}).then(function(h){
+ h=h.replace('Cassa: 100 monete. Personaggi: 500 monete.','Cassa: 400 monete. Personaggi: 1000 monete.');
+ h=h.replace('🎁 COMPRA CASSA · 100','🎁 COMPRA CASSA · 400');
+ h=h.replace('Personaggi · 500 monete','Personaggi · 1000 monete');
+ h=h.replace(/COMPRA · 500/g,'COMPRA · 1000');
+ h=h.replace("if(state.coins<100){toast('Servono 100 monete');return}state.coins-=100","if(state.coins<400){toast('Servono 400 monete');return}state.coins-=400");
+ h=h.replace("if(state.coins<500){toast('Servono 500 monete');return}state.coins-=500","if(state.coins<1000){toast('Servono 1000 monete');return}state.coins-=1000");
+ h=h.replace(/V5\.13/g,'V5.14');
+ document.open();document.write(h);document.close();
+}).catch(function(e){document.getElementById('load').textContent='Errore caricamento: '+e});
+</script>
+</body>
+</html>
