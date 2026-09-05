@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>StarBrawl Arena V5.8 Shop</title>
+<style>
+html,body{margin:0;height:100%;background:#0d1320;overflow:hidden;font-family:Arial,sans-serif}#game{width:100%;height:100%;border:0;display:block}#load{position:fixed;inset:0;display:grid;place-items:center;background:#0d1320;color:#fff;z-index:20;font-weight:900}
+</style>
+</head>
+<body>
+<div id="load">Caricamento StarBrawl Arena V5.8...</div>
+<iframe id="game" src="./play-v56.html?v=shop-base"></iframe>
+<script>
+(function(){
+var frame=document.getElementById('game'),load=document.getElementById('load');
+var roster=[
+['bolt','Bolt','Comune'],['moss','Moss','Comune'],['birra','Birra','Tuff Rainbow'],['rook','Rook','Raro','african'],
+['vexa','Vexa','Raro'],['rivet','Rivet','Raro'],['iris','Iris','Raro','chinese'],['nyra','Nyra','Epico'],['glint','Glint','Epico'],
+['dante','Dante','Epico'],['brakka','Brakka','Mitico'],['astra','Astra','Leggendario'],['freya','Freya','Epico'],
+['kairo','Kairo','Raro'],['knox','Knox','Mitico'],['cinder','Cinder','Epico'],['hex','Hex','Mitico'],['zara','Zara','Mitico','african'],
+['warden','Warden','Epico'],['orion','Orion','Leggendario','chinese'],['lumi','Lumi','Raro'],['onyx','Onyx','Mitico'],['lyra','Lyra','Leggendario'],['nova','Nova','Leggendario'],['vanta','Vanta','Leggendario']
+];
+var colors={Comune:'#79d679',Raro:'#69a8ff',Epico:'#c27aff',Mitico:'#ff6dc1',Leggendario:'#ffd45b','Tuff Rainbow':'#ff9df4'};
+function getState(){
+ try{var s=localStorage.getItem('starbrawl_v4');return s?JSON.parse(s):{cups:0,coins:100,power:0,boxes:0,unlocked:['bolt','moss','birra','rook'],selected:['bolt','moss'],levels:{bolt:1,moss:1,birra:1,rook:1},charCups:{bolt:0,moss:0,birra:0,rook:0},claims:[]}}catch(e){return null}
+}
+function saveState(s){try{localStorage.setItem('starbrawl_v4',JSON.stringify(s));return true}catch(e){return false}}
+function inject(){
+ try{
+  var w=frame.contentWindow,d=w.document;
+  if(!d||!d.body||!d.querySelector('nav')){setTimeout(inject,300);return}
+  load.style.display='none';
+  if(d.getElementById('shopInjected'))return;
+  var st=d.createElement('style');st.id='shopInjected';st.textContent=`
+  nav{grid-template-columns:repeat(5,1fr)!important}.shopModal{position:fixed;inset:0;background:#000c;z-index:50;display:none;align-items:center;justify-content:center;padding:14px}.shopModal.on{display:flex}.shopBox{width:min(390px,100%);max-height:88vh;overflow:auto;background:#17243a;border:1px solid #4f6486;border-radius:18px;padding:14px;text-align:left}.shopHead{display:flex;align-items:center;justify-content:space-between;gap:10px}.shopTitle{font-size:24px;font-weight:1000}.shopMoney{background:#243551;border:1px solid #415678;border-radius:9px;padding:7px 9px;font-size:12px;font-weight:900}.shopClose{border:0;border-radius:9px;background:#334763;color:#fff;padding:9px 12px;font-weight:900}.shopHero{margin-top:12px;background:linear-gradient(135deg,#4a2d69,#233f68);border:1px solid #795d9b;border-radius:14px;padding:12px}.buyChest{width:100%;margin-top:9px;border:0;border-radius:10px;background:#ffd34f;color:#36270a;padding:12px;font-weight:1000}.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.shopChar{background:#202d45;border:1px solid #40516e;border-radius:12px;padding:10px}.shopChar b{display:block;font-size:14px}.shopRar{font-size:9px;font-weight:1000;margin:3px 0 7px}.shopBuy{width:100%;border:0;border-radius:8px;background:#5fa8ff;color:#10253e;padding:9px 4px;font-size:10px;font-weight:1000}.shopBuy:disabled{background:#3a4659;color:#8d98aa}.shopNote{font-size:10px;color:#b7c3d7;line-height:1.35;margin-top:5px}.shopOrigin{font-size:9px;color:#c7d2e2;margin:2px 0 7px}`;d.head.appendChild(st);
+  var b=d.createElement('button');b.type='button';b.id='shopNavBtn';b.textContent='SHOP';d.querySelector('nav').appendChild(b);
+  var m=d.createElement('div');m.id='shopModal';m.className='shopModal';m.innerHTML='<div class="shopBox"><div class="shopHead"><div class="shopTitle">SHOP</div><div id="shopMoney" class="shopMoney">0 MONETE</div><button id="shopClose" class="shopClose" type="button">X</button></div><div class="shopHero"><b style="font-size:18px">🎁 CASSA</b><div class="shopNote">Può contenere monete, Energia e un nuovo personaggio.</div><button id="buyChestShop" class="buyChest" type="button">COMPRA · 100 MONETE</button></div><div style="font-size:18px;font-weight:1000;margin-top:14px">PERSONAGGI · 500 MONETE</div><div id="shopGrid" class="shopGrid"></div></div>';
+  d.body.appendChild(m);
+  function redraw(){
+   var s=getState();if(!s)return; if(s.boxes==null)s.boxes=0;if(!Array.isArray(s.unlocked))s.unlocked=['bolt','moss','birra','rook'];
+   d.getElementById('shopMoney').textContent=(s.coins||0)+' MONETE';
+   var html='';for(var i=0;i<roster.length;i++){var r=roster[i],own=s.unlocked.indexOf(r[0])!==-1;html+='<div class="shopChar"><b>'+r[1]+'</b><div class="shopRar" style="color:'+colors[r[2]]+'">'+r[2]+'</div>'+(r[3]?'<div class="shopOrigin">'+(r[3]==='african'?'Origini africane':'Origini cinesi')+'</div>':'')+'<button class="shopBuy" type="button" data-buychar="'+r[0]+'" '+(own?'disabled':'')+'>'+(own?'GIÀ TUO':'COMPRA · 500')+'</button></div>'}d.getElementById('shopGrid').innerHTML=html;applyDiversity();
+   var btns=d.querySelectorAll('[data-buychar]');for(i=0;i<btns.length;i++)btns[i].onclick=function(){buyChar(this.getAttribute('data-buychar'))};
+  }
+  function applyDiversity(){
+   var styles={rook:{skin:'#6f432e',hair:'#241914'},zara:{skin:'#8a5439',hair:'#211713'},iris:{skin:'#e3b07d',hair:'#171717'},orion:{skin:'#d6a06f',hair:'#161616'}};
+   var grids=[d.getElementById('homeGrid'),d.getElementById('fightersGrid')];
+   for(var g=0;g<grids.length;g++){var grid=grids[g];if(!grid)continue;var cards=grid.querySelectorAll('.card');for(var i=0;i<cards.length&&i<roster.length;i++){var id=roster[i][0],sty=styles[id];if(!sty)continue;var head=cards[i].querySelector('.head');if(head)head.style.background=sty.skin;var hair=cards[i].querySelectorAll('.hair,.pony,.mhair,.beard');for(var j=0;j<hair.length;j++)hair[j].style.background=sty.hair;}}
+  }
+  setTimeout(applyDiversity,80);
+  var mo=new MutationObserver(function(){applyDiversity()});var hg=d.getElementById('homeGrid');var fg=d.getElementById('fightersGrid');if(hg)mo.observe(hg,{childList:true,subtree:true});if(fg)mo.observe(fg,{childList:true,subtree:true});
+  function refreshGame(){frame.src='./play-v56.html?v=shop-'+Date.now()}
+  function buyChest(){var s=getState();if(!s)return;if((s.coins||0)<100){w.alert('Non hai abbastanza monete');return}s.coins-=100;s.boxes=(s.boxes||0)+1;saveState(s);w.alert('Cassa acquistata!');refreshGame()}
+  function buyChar(id){var s=getState();if(!s)return;if(s.unlocked.indexOf(id)!==-1)return;if((s.coins||0)<500){w.alert('Non hai abbastanza monete');return}s.coins-=500;s.unlocked.push(id);s.levels=s.levels||{};s.charCups=s.charCups||{};s.levels[id]=s.levels[id]||1;if(s.charCups[id]==null)s.charCups[id]=0;saveState(s);w.alert('Personaggio sbloccato!');refreshGame()}
+  b.onclick=function(){redraw();m.classList.add('on')};d.getElementById('shopClose').onclick=function(){m.classList.remove('on')};m.onclick=function(e){if(e.target===m)m.classList.remove('on')};d.getElementById('buyChestShop').onclick=buyChest;redraw();
+ }catch(e){load.textContent='Errore shop: '+e}
+}
+frame.addEventListener('load',function(){setTimeout(inject,350)});setTimeout(inject,1300);
+})();
+</script>
+</body>
+</html>
