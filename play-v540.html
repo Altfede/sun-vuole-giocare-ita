@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V5.40</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl...</div><script>
+(async()=>{try{
+let h=await (await fetch('https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9e27a3b9523f8e90088a117ed883b511ac9cce00/play-v5286.html')).text();
+const marker='<script src="./assets/v5286/art3.js"></'+'script>';
+if(!h.includes(marker))throw new Error('Base V5.28.6 non riconosciuta');
+h=h.replace(marker,marker+'<script src="./assets/v533/art.js"></'+'script><script src="./assets/v534/mamba.js"></'+'script><script src="./assets/v535/art.js"></'+'script><script src="./assets/v536/facefix.js"></'+'script><script src="./assets/v537/facefix2.js"></'+'script><script src="./assets/v538/art.js"></'+'script><script src="./assets/v539/cyber.js"></'+'script><script src="./assets/v540/beasts.js"></'+'script>');
+document.open();document.write(h);document.close();
+}catch(e){const l=document.getElementById('l');if(l)l.textContent='Errore: '+e.message;}})();
+</script>
