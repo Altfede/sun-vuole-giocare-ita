@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl Arena V5.28.2 HQ</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V5.28.2 HQ...</div><script>
+(async()=>{
+  const base='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a2c2108d58b048343a1ca0fc846fcdb4742309a/play-v5282.html';
+  let h=await (await fetch(base)).text();
+  const b64=(await (await fetch('./assets/v5282-roster-hq.webp.b64.txt?v=380519db')).text()).trim();
+  const SPR='data:image/webp;base64,'+b64;
+  h=h.replace('(async()=>{','(async()=>{const SPR='+JSON.stringify(SPR)+';');
+  const pos={"mamba":"0% 0%","asha":"12.5% 0%","rook":"25% 0%","vexa":"37.5% 0%","rivet":"50% 0%","iris":"62.5% 0%","nyra":"75% 0%","glint":"87.5% 0%","dante":"100% 0%","nia":"0% 50%","brakka":"12.5% 50%","astra":"25% 50%","mei":"37.5% 50%","freya":"50% 50%","kairo":"62.5% 50%","knox":"75% 50%","cinder":"87.5% 50%","hex":"100% 50%","zara":"0% 100%","jian":"12.5% 100%","warden":"25% 100%","orion":"37.5% 100%","lumi":"50% 100%","onyx":"62.5% 100%","lyra":"75% 100%","nova":"87.5% 100%","vanta":"100% 100%"};
+  let changed=0;
+  Object.keys(pos).forEach(id=>{
+    const p=pos[id];
+    const re=new RegExp('const\\s+'+id+'="(?:\\\\.|[^"\\\\])*";');
+    if(!re.test(h))throw new Error('Design '+id+' non trovato');
+    const decl="const "+id+"='<div style=\"height:100%;aspect-ratio:4/3;max-width:100%;margin:auto;background-image:url(' + SPR + ');background-repeat:no-repeat;background-size:auto 300%;background-position:"+p+";background-color:transparent;filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))\"></div>';";
+    h=h.replace(re,decl); changed++;
+  });
+  if(changed!==27)throw new Error('Redesign incompleto: '+changed+'/27');
+  document.open();document.write(h);document.close();
+})().catch(e=>{const l=document.getElementById('l');if(l)l.textContent='Errore caricamento: '+e.message;});
+</script>
