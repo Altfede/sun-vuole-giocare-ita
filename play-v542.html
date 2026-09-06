@@ -1,0 +1,13 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V5.42</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl...</div><script>
+(async()=>{try{
+let h=await (await fetch('https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9e27a3b9523f8e90088a117ed883b511ac9cce00/play-v5286.html')).text();
+const load='let h=await (await fetch("https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a2c2108d58b048343a1ca0fc846fcdb4742309a/play-v5282.html")).text();';
+if(!h.includes(load))throw new Error('Loader V5.28.6 non riconosciuto');
+const patched=load+'h=h.replace("fetch(\'./play-v526.html?v=57ccb23a\')","fetch(\'https://raw.githack.com/Altfede/sun-vuole-giocare-ita/781fc31b180dfc9351c207e07301475238416c03/play-v526chars.html\')");';
+h=h.replace(load,patched);
+const marker='<script src="./assets/v5286/art3.js"></'+'script>';
+if(!h.includes(marker))throw new Error('Asset marker non trovato');
+h=h.replace(marker,marker+'<script src="./assets/v533/art.js"></'+'script><script src="./assets/v534/mamba.js"></'+'script><script src="./assets/v535/art.js"></'+'script><script src="./assets/v536/facefix.js"></'+'script><script src="./assets/v537/facefix2.js"></'+'script><script src="./assets/v538/art.js"></'+'script><script src="./assets/v539/cyber.js"></'+'script><script src="./assets/v540/beasts.js"></'+'script>');
+document.open();document.write(h);document.close();
+}catch(e){const l=document.getElementById('l');if(l)l.textContent='Errore: '+e.message;}})();
+</script>
