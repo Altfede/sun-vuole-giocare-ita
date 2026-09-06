@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>StarBrawl Arena V5.24.2</title>
+<style>html,body{margin:0;width:100%;height:100%;background:#0d1320;color:#fff;font-family:Arial,sans-serif}body{display:grid;place-items:center}.loading{font-weight:900;font-size:16px;text-align:center;padding:24px}.loading b{color:#ffd34f}</style>
+</head>
+<body><div class="loading">STAR<b>BRAWL</b><br><small>Caricamento V5.24.2…</small></div>
+<script>
+(async function(){
+  const base='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/main/play-v524.html?v=645610a9';
+  try{
+    let src=await (await fetch(base,{cache:'no-store'})).text();
+    const start="var m=byId('chestModal'),wrap=m.querySelector('.chestWrap'),glow=m.querySelector('.chestGlow'),lid=m.querySelector('.chestLid');";
+    const end="setTimeout(function(){byId('chestResult').innerHTML=msg;byId('chestClose').style.display='block'},1400)";
+    const a=src.indexOf(start);
+    const b=src.indexOf(end,a);
+    if(a<0||b<0) throw new Error('Patch cassa non trovato');
+    const replacement="var m=byId('chestModal');m.className='modal on';byId('chestResult').textContent='La cassa si sta aprendo...';byId('chestClose').style.display='none';void m.offsetWidth;m.className='modal on opening';setTimeout(function(){m.className='modal on opening opened'},900);setTimeout(function(){byId('chestResult').innerHTML=msg;byId('chestClose').style.display='block';m.className='modal on opened'},1400)";
+    src=src.slice(0,a)+replacement+src.slice(b+end.length);
+    src=src.replace('STAR<b>BRAWL</b> V5.24','STAR<b>BRAWL</b> V5.24.2');
+    src=src.replace('<title>StarBrawl Arena V5.24 SAFE CSS</title>','<title>StarBrawl Arena V5.24.2</title>');
+    document.open();document.write(src);document.close();
+  }catch(e){
+    document.body.innerHTML='<div class="loading">Errore di caricamento.<br><small>'+String(e.message||e)+'</small></div>';
+  }
+})();
+</script>
+</body>
+</html>
