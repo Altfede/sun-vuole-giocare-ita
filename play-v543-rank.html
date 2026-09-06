@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>StarBrawl V5.43 + Rank Icon</title>
+<body style="margin:0;background:#0d1320;color:#fff;font-family:Arial">
+<div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl...</div>
+<script>
+(async()=>{
+  try{
+    const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d7feeaa2f35aca342ee312f037e61dc9e3e065fe/play-v543.html';
+    let s=await (await fetch(BASE)).text();
+    const needle="document.open();document.write(h);document.close();\n}catch(e)";
+    if(!s.includes(needle)) throw new Error('V5.43 non riconosciuta');
+    s=s.replace(
+      needle,
+      "h=h.replace('</body>','<script src=\"./assets/v546/rank-icon.js\"></'+'script></body>');document.open();document.write(h);document.close();\n}catch(e)"
+    );
+    document.open();document.write(s);document.close();
+  }catch(e){
+    const l=document.getElementById('l');
+    if(l) l.textContent='Errore: '+e.message;
+  }
+})();
+</script>
