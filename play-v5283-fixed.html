@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl Arena V5.28.3 COMPACT UI</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V5.28.3...</div><script>
+(async()=>{
+  const base='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a2c2108d58b048343a1ca0fc846fcdb4742309a/play-v5282.html';
+  let h=await (await fetch(base)).text();
+  const parts=await Promise.all([0,1,2,3].map(i=>fetch('./assets/v5282-cutouts/p'+i+'.txt?v=7f53bfda').then(r=>{if(!r.ok)throw new Error('Asset '+i+' non caricato');return r.text()})));
+  const SPR='data:image/webp;base64,'+parts.join('').trim();
+  h=h.replace('(async()=>{','(async()=>{const SPR='+JSON.stringify(SPR)+';');
+  const pos={"mamba":"0% 0%","asha":"12.5% 0%","rook":"25% 0%","vexa":"37.5% 0%","rivet":"50% 0%","iris":"62.5% 0%","nyra":"75% 0%","glint":"87.5% 0%","dante":"100% 0%","nia":"0% 50%","brakka":"12.5% 50%","astra":"25% 50%","mei":"37.5% 50%","freya":"50% 50%","kairo":"62.5% 50%","knox":"75% 50%","cinder":"87.5% 50%","hex":"100% 50%","zara":"0% 100%","jian":"12.5% 100%","warden":"25% 100%","orion":"37.5% 100%","lumi":"50% 100%","onyx":"62.5% 100%","lyra":"75% 100%","nova":"87.5% 100%","vanta":"100% 100%"};
+  let changed=0;
+  Object.keys(pos).forEach(id=>{
+    const p=pos[id];
+    const re=new RegExp('const\\s+'+id+'="(?:\\\\.|[^"\\\\])*";');
+    if(!re.test(h))throw new Error('Design '+id+' non trovato');
+    const decl="const "+id+"='<div style=\"width:100%;height:100%;background-image:url(' + SPR + ');background-repeat:no-repeat;background-size:900% 300%;background-position:"+p+";background-color:transparent;filter:drop-shadow(0 4px 5px rgba(0,0,0,.28))\"></div>';";
+    h=h.replace(re,decl); changed++;
+  });
+  if(changed!==27)throw new Error('Redesign incompleto: '+changed+'/27');
+  const innerNeedle='document.open();document.write(s);document.close();';
+  if(!h.includes(innerNeedle))throw new Error('UI base non riconosciuta');
+  const uiPatch=`
+const __uiCss='nav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:7px calc(9px + env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) calc(9px + env(safe-area-inset-left));background:rgba(10,18,34,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08)}nav button{min-height:54px;border:0;border-radius:14px;background:linear-gradient(180deg,#1d2943,#121a2c);color:#e7edff;font-size:8px;font-weight:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}nav button.active{background:linear-gradient(180deg,#395282,#24395f);box-shadow:inset 0 0 0 1px rgba(255,211,79,.55)}nav .ni{font-size:19px;line-height:1}nav .nl{font-size:8px;line-height:1;letter-spacing:.25px}nav button.active .ni,nav button.active .nl{color:#ffd34f}#fightersScreen .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}#fightersScreen .card{border-radius:10px}#fightersScreen .art{height:70px}#fightersScreen .cardbody{padding:5px}#fightersScreen .name{font-size:11px;line-height:1.05}#fightersScreen .rar{font-size:8px}#fightersScreen .meta{font-size:8px;line-height:1.15;margin-top:3px}#fightersScreen .badge{font-size:8px;padding:3px 4px;top:4px;right:4px}#fightersScreen .level{font-size:8px;padding:2px 4px;margin-top:4px}#fightersScreen .actions{gap:4px;margin-top:5px}#fightersScreen .use,#fightersScreen .upgrade{font-size:7px;padding:7px 2px;border-radius:7px}';
+s=s.replace('</style>',__uiCss+'</style>');
+const __oldNav='<nav><button type="button" data-screen="homeScreen" class="active">HOME</button><button type="button" data-screen="fightersScreen">PERSONAGGI</button><button type="button" data-screen="roadScreen">TROFEI</button><button type="button" data-screen="shopScreen">SHOP</button><button type="button" id="quickPlay">PARTITA</button></nav>';
+const __newNav='<nav><button type="button" data-screen="homeScreen" class="active"><span class="ni">⌂</span><span class="nl">HOME</span></button><button type="button" data-screen="fightersScreen"><span class="ni">▣</span><span class="nl">PERSONAGGI</span></button><button type="button" data-screen="roadScreen"><span class="ni">♛</span><span class="nl">TROFEI</span></button><button type="button" data-screen="shopScreen"><span class="ni">▤</span><span class="nl">SHOP</span></button><button type="button" id="quickPlay"><span class="ni">▶</span><span class="nl">PARTITA</span></button></nav>';
+s=s.replace(__oldNav,__newNav);
+`;
+  h=h.replace(innerNeedle,uiPatch+innerNeedle);
+  document.open(); document.write(h); document.close();
+})().catch(e=>{const l=document.getElementById('l'); if(l)l.textContent='Errore caricamento: '+e.message;});
+</script>
