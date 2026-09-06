@@ -1,0 +1,10 @@
+(function(){'use strict';
+if(window.__starBrawlNavScroll554)return;window.__starBrawlNavScroll554=true;
+var d=document,nav=d.querySelector('nav');if(!nav)return;
+var st=d.createElement('style');st.id='v554NavScrollStyle';st.textContent=`nav{display:flex!important;grid-template-columns:none!important;overflow-x:auto!important;overflow-y:hidden!important;gap:7px!important;scroll-snap-type:x proximity!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-x:contain!important;touch-action:pan-x!important;padding:7px calc(10px + env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left))!important;scrollbar-width:none!important}nav::-webkit-scrollbar{display:none!important}nav>button{flex:0 0 78px!important;min-width:78px!important;width:78px!important;min-height:48px!important;scroll-snap-align:center!important;font-size:9px!important;padding:5px 6px!important;white-space:nowrap!important}#v550ModeNav,#v552StatsBtn,#v553PassBtn{flex-basis:82px!important;min-width:82px!important;width:82px!important}.v554Hint{position:fixed;right:8px;bottom:calc(62px + env(safe-area-inset-bottom));z-index:20;padding:5px 8px;border-radius:9px;background:#101827dd;border:1px solid #ffffff33;color:#dfe8f4;font:800 9px Arial;pointer-events:none;opacity:0;transition:opacity .25s}.v554Hint.on{opacity:1}`;d.head.appendChild(st);
+var hint=d.createElement('div');hint.className='v554Hint';hint.textContent='⇆ SCORRI IL MENU';d.body.appendChild(hint);
+function showHint(){if(nav.scrollWidth>nav.clientWidth+8){hint.classList.add('on');setTimeout(function(){hint.classList.remove('on')},2200)}}
+setTimeout(showHint,900);setTimeout(showHint,2200);
+nav.addEventListener('scroll',function(){hint.classList.remove('on')},{passive:true});
+nav.addEventListener('click',function(e){var b=e.target.closest('button');if(b&&b.scrollIntoView){try{b.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}catch(x){}}});
+})();
