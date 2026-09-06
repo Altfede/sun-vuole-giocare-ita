@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V5.29.7</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl...</div><script>
+(async()=>{try{
+let s=await (await fetch("https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9e27a3b9523f8e90088a117ed883b511ac9cce00/play-v5286.html")).text();
+const needle='document.open();document.write(h);document.close();';
+if(!s.includes(needle))throw new Error('Base V5.28.6 non riconosciuta');
+const inject="<scr"+"ipt>(function(){\nvar src=\"data:image/webp;base64,UklGRlTTAABXRUJQVlA4IEjTAAAwZAKdASoAAgACPh0MhUGhCKq06ugUAOJZkPu1ImBeqCpx8FBDsNt/0vyA7HjqXn/9F+wP98/5v+z+WjhPo675ff/83/X/7V/zf858lf99/b/xc9++vf1+9aPx79P/yv9w/y3/D/wX///7v0//6X+T93/8i/xH/A/zv7wfQF/Dv5V/kP7j/jf+Z/iv///8PrM/Z33p/uj/3P23+BP9k/vX/P/y37y/8j6jP9b/4v8v7vf7j/tf+t/pv9J8gX9K/uP+4/Pn4xfYk/eX//+4J/Uv8j/4P3G///y6/77/4/7X/ff///o/Z3/Uv9X/8P9Z/wf/59Cf8//tv/S/a//+f6n6AP/P///ek/gH/k///sAf8n/////2h/Df+R/h/7d+1fvS+M/y399/xn7a/4TyL/Zf4P+8/5j/Sf3z/4f7nr/er/4v/m9D/419y/zf9y/zX/J/xH7\";\nfunction patchMamba(){var nodes=document.querySelectorAll('.art[data-detail=\\\"mamba\\\"]');for(var i=0;i<nodes.length;i++){var el=nodes[i];if(el.getAttribute('data-mamba-photo')==='1')continue;el.innerHTML='<img alt=\\\"Mamba\\\" src=\\\"'+src+'\\\" style=\\\"width:100%;height:100%;display:block;object-fit:cover\\\">';el.setAttribute('data-mamba-photo','1')}}\nnew MutationObserver(patchMamba).observe(document.documentElement,{childList:true,subtree:true});setTimeout(patchMamba,50);})();</scr"+"ipt>";
+s=s.replace(needle,"h=h.replace('</body>',"+JSON.stringify(inject+"</body>")+" );"+needle);
+document.open();document.write(s);document.close();
+}catch(e){document.getElementById('l').textContent='Errore: '+e.message;}})();
+</script>
