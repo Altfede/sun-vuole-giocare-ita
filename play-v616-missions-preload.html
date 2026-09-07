@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.16 Mission Progression Preload</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento progressione Missioni...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e3161f3e1bc02b85a92a4bf1bb4fa5341c9aa062/play-v610-bot-ai-preload.html';
+const M={vexa:100,rivet:200,iris:300,nyra:400,glint:500,dante:600,nia:700,brakka:800,clawz:900,astra:1000,flux:1100,mei:1200,kairo:1300,dusty:1400,tusk:1500,knox:1600,cinder:1700,velvet:1800,echo:1900,mamba:2000,hex:2100,pollen:2200,zara:2300,jian:2400,asha:2500,warden:2600,jinx:2700,orion:2800,lumi:2900,pyre:3000,onyx:3100,nimbus:3200,lyra:3300,rime:3400,nova:3500,solara:3600,vanta:3800,null9:4000};
+const ow=Document.prototype.write,owl=Document.prototype.writeln;
+function patch(x){if(typeof x!=='string'||x.indexOf('var fighters=[')<0)return x;try{for(var id in M){var re=new RegExp("(\\{id:'"+id+"'[^}]*?unlock:)\\d+","g");x=x.replace(re,'$1'+M[id])}x=x.replaceAll('V6.10','V6.16');return x}catch(e){throw new Error('Patch progressione '+e.message)}}
+Document.prototype.write=function(){var a=[].slice.call(arguments);for(var i=0;i<a.length;i++)a[i]=patch(a[i]);return ow.apply(this,a)};
+Document.prototype.writeln=function(){var a=[].slice.call(arguments);for(var i=0;i<a.length;i++)a[i]=patch(a[i]);return owl.apply(this,a)};
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base Bot AI non caricata');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.16 preload: '+e.message}})();</script>
