@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.17 Missions Safe</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.17...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/533094a130edef990fd8a0fa6752f825c15b215a/play-v615-clean-nav-final-safe.html';
+const MISSIONS='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9312a47f342ec9871d36aac6d396271f9a380866/assets/v617/missions-safe.js';
+let h=await(await fetch(BASE)).text();
+const cleanConst="const CLEAN='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/ca66dbb5b26d0658093e8f9035d9197b19e14cc0/assets/v615/navigation-cleanup-final.js';";
+if(!h.includes(cleanConst))throw new Error('Hook CLEAN V6.15 non trovato');
+h=h.replace(cleanConst,cleanConst+"\nconst MISSIONS='"+MISSIONS+"';");
+const cleanAsset="var cleanNavAsset='"+'"+CLEAN+"'+"';";
+if(!h.includes(cleanAsset))throw new Error('Hook cleanNavAsset V6.15 non trovato');
+h=h.replace(cleanAsset,cleanAsset+"\nvar missions617Asset='"+'"+MISSIONS+"'+"';");
+const loadHook="add(d,'v615CleanNavLoader',cleanNavAsset);";
+if(!h.includes(loadHook))throw new Error('Hook loader V6.15 non trovato');
+h=h.replace(loadHook,loadHook+"add(d,'v617MissionsLoader',missions617Asset);");
+h=h.replaceAll('V6.15','V6.17');h=h.replace('CLEAN NAV FINAL','MISSIONS SAFE');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.17: '+e.message}})();</script>
