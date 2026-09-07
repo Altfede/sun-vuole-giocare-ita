@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.19 Difficulty + Titles</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.19...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/4fc8bf4c9f960d14852f2c97abef523ca2f6a470/play-v618-missions-bridge-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/4b5e1f0895f6c79dfe2136d172e356c32caba0df/assets/v618/navigation-missions-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9d3856942091a4e1e3494c8a75fb33a369183af0/assets/v619/navigation-missions-titles-bridge.js';
+let h=await(await fetch(BASE)).text();
+if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.18 non caricata');
+if(!h.includes(OLD))throw new Error('Bridge V6.18 non trovato');
+h=h.replace(OLD,NEW).replaceAll('V6.18','V6.19').replace('MISSIONS BRIDGE','DIFFICULTY + TITLES');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.19: '+e.message}})();</script>
