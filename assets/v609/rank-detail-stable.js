@@ -1,0 +1,24 @@
+(function(){'use strict';
+if(window.__starBrawl609Rank)return;window.__starBrawl609Rank=true;
+var d=document,GAME='starbrawl_v4';
+function game(){try{return JSON.parse(localStorage.getItem(GAME)||'{}')||{}}catch(e){return{}}}
+function rank(c){return Math.floor(Math.max(0,+c||0)/50)}
+function nextRank(r){return(r+1)*50}
+function cardId(c){var a=c&&c.querySelector('.art[data-detail]');return a&&a.getAttribute('data-detail')}
+function cupsFor(id){var g=game(),cc=g.charCups||{};return Math.max(0,+cc[id]||0)}
+function detailId(){var a=d.querySelector('.cdmini.active[data-cdmini]');if(a)return a.getAttribute('data-cdmini');var k=d.getElementById('v575DetailKit');if(k&&k.getAttribute('data-id'))return k.getAttribute('data-id');var m=d.getElementById('v577MasteryDetail');if(m&&m.getAttribute('data-id'))return m.getAttribute('data-id');var name=d.getElementById('cdName');if(name){var cards=d.querySelectorAll('.card');for(var i=0;i<cards.length;i++){var n=cards[i].querySelector('.name');if(n&&n.textContent.trim()===name.textContent.trim())return cardId(cards[i])}}return null}
+var shield='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 27 7v8c0 7-4.8 11.8-11 15C9.8 26.8 5 22 5 15V7z" fill="#3a4658" stroke="#f4c94e" stroke-width="2"/><path d="m16 8 2.1 4.3 4.8.7-3.5 3.4.8 4.8-4.2-2.3-4.2 2.3.8-4.8L9.1 13l4.8-.7z" fill="#ffd85a"/></svg>';
+var st=d.createElement('style');st.id='v609RankStyle';st.textContent=`
+.rankChipV543{display:none!important}.v607RankBadge{display:none!important}
+.v609RankBadge{position:absolute!important;left:3px!important;top:3px!important;z-index:20!important;width:22px!important;height:11px!important;display:flex!important;align-items:center!important;gap:1px!important;padding:1px!important;box-sizing:border-box!important;border-radius:4px!important;background:#0b1320e8!important;border:1px solid #d8aa31!important;color:#ffd75b!important;font:1000 4.2px/1 Arial!important;white-space:nowrap!important;pointer-events:none!important;overflow:hidden!important;contain:layout paint style!important;margin:0!important}
+.v609RankBadge svg{width:8px!important;height:8px!important;min-width:8px!important;display:block!important;flex:0 0 8px!important}
+#v609RankDetail{margin:8px 0!important;padding:10px 11px!important;display:flex!important;align-items:center!important;gap:10px!important;border-radius:12px!important;background:linear-gradient(135deg,#101a2b,#18233a)!important;border:2px solid #d8aa31!important;box-shadow:0 5px 16px #0005!important;min-height:62px!important;box-sizing:border-box!important}
+#v609RankDetail .v609BigShield{width:42px!important;height:42px!important;min-width:42px!important;display:grid!important;place-items:center!important}#v609RankDetail .v609BigShield svg{width:42px!important;height:42px!important;display:block!important}
+#v609RankDetail .v609RankText{min-width:0!important;flex:1!important}#v609RankDetail small{display:block!important;color:#9fb0c7!important;font:900 8px Arial!important;letter-spacing:.7px!important}#v609RankDetail b{display:block!important;margin-top:2px!important;color:#ffd75b!important;font:1000 20px Arial!important;line-height:1!important}#v609RankDetail span{display:block!important;margin-top:4px!important;color:#d4deeb!important;font:800 8px Arial!important}
+`;(d.head||d.documentElement).appendChild(st);
+function placeCard(card){var id=cardId(card);if(!id)return;var b=card.querySelector(':scope > .v609RankBadge');if(!b){b=d.createElement('div');b.className='v609RankBadge';b.innerHTML=shield+'<span></span>';card.appendChild(b)}var s=b.querySelector('span'),r=rank(cupsFor(id));if(s&&s.textContent!==String(r))s.textContent=String(r)}
+function placeDetail(){var ch=d.getElementById('charDetail');if(!ch||!ch.classList.contains('on'))return;var id=detailId();if(!id)return;var cups=cupsFor(id),r=rank(cups),box=d.getElementById('v609RankDetail');if(!box){box=d.createElement('div');box.id='v609RankDetail';var host=d.getElementById('cdRange'),panel=host&&host.closest('.cdpanel');if(!panel)return;var actions=panel.querySelector('.cdactions');if(actions)panel.insertBefore(box,actions);else panel.appendChild(box)}box.setAttribute('data-id',id);box.innerHTML='<div class="v609BigShield">'+shield+'</div><div class="v609RankText"><small>RANK PERSONAGGIO</small><b>RANK '+r+'</b><span>'+cups+' coppe · prossimo Rank a '+nextRank(r)+' coppe</span></div>'}
+function scan(){try{var cards=d.querySelectorAll('.card');for(var i=0;i<cards.length;i++)placeCard(cards[i]);placeDetail()}catch(e){}}
+scan();setTimeout(scan,150);setTimeout(scan,500);setTimeout(scan,1100);setInterval(scan,700);
+window.addEventListener('storage',scan);window.__v609Rank={refresh:scan};
+})();
