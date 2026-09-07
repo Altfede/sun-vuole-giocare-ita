@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.13 Profile Button</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.13...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/2f0ac6c358670e3298a6cb34a8efbaec7eb42e26/play-v612-player-profile-safe.html';
+const BTN='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/7e3596c51c63b449532333ef75c2d1fe82b4abcc/assets/v613/profile-button.js';
+let h=await(await fetch(BASE)).text();
+const profileConst="const PROFILE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/896400f6b0e74cc8e3bec709d860cba33c1e5bc7/assets/v612/player-profile.js';";
+if(!h.includes(profileConst))throw new Error('Hook profilo V6.12 non trovato');
+h=h.replace(profileConst,profileConst+"\nconst PROFILEBTN='"+BTN+"';");
+const assetHook="var playerProfileAsset='"+'"+PROFILE+"'+"';";
+if(!h.includes(assetHook))throw new Error('Hook asset profilo V6.12 non trovato');
+h=h.replace(assetHook,assetHook+"\nvar profileButtonAsset='"+'"+PROFILEBTN+"'+"';");
+const loadHook="add(d,'v612PlayerProfileLoader',playerProfileAsset);";
+if(!h.includes(loadHook))throw new Error('Hook loader profilo V6.12 non trovato');
+h=h.replace(loadHook,loadHook+"add(d,'v613ProfileButtonLoader',profileButtonAsset);");
+h=h.replaceAll('V6.12','V6.13');h=h.replace('PLAYER PROFILE','PROFILE BUTTON');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.13: '+e.message}})();</script>
