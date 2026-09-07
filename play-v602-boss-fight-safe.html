@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.02 Boss Fight</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.02...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a40c7c08395933c7623bc0d283bd2515f170729/play-v600-map-modifiers-safe.html';
+const ROSTER='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d0a6028f9cc5295936ad6a744fd5e36d966b6492/assets/v601/compact-fighters-menu.js';
+const BOSS='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/026c7aa7d6b5336019fd3cd96d5ff65b0622d7ce/assets/v602/boss-fight.js';
+let h=await(await fetch(BASE)).text();
+const navLine="var compactAsset='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/30ab907871808e94077da3f4a14165cf8b7902c3/assets/v555/nav-compact.js';";
+if(!h.includes(navLine))throw new Error('Hook asset V6.00 non trovato');
+h=h.replace(navLine,navLine+"\nvar rosterCompactAsset='"+ROSTER+"';\nvar bossFightAsset='"+BOSS+"';");
+const extras='function extras(d){';
+if(!h.includes(extras))throw new Error('Hook extras V6.00 non trovato');
+h=h.replace(extras,"function extras(d){add(d,'v601CompactFightersLoader',rosterCompactAsset);add(d,'v602BossFightLoader',bossFightAsset);");
+h=h.replaceAll('V6.00','V6.02');
+h=h.replace('MAP MODIFIERS','BOSS FIGHT');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.02: '+e.message}})();</script>
