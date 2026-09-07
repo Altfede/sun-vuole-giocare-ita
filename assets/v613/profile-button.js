@@ -1,0 +1,9 @@
+(function(){'use strict';
+if(window.__starBrawl613ProfileButton)return;window.__starBrawl613ProfileButton=true;
+var d=document;
+var st=d.createElement('style');st.id='v613ProfileButtonStyle';st.textContent='#v612ProfileHome{display:none!important}#v613ProfileButton{flex:0 0 auto;min-width:54px;height:34px;padding:0 7px;border:1px solid #6fe4ff;border-radius:9px;background:linear-gradient(180deg,#183a52,#12263b);color:#dffaff;font:1000 7px Arial;letter-spacing:.3px;box-shadow:0 3px 0 #08131f,0 0 10px #5be7ff33;touch-action:manipulation}#v613ProfileButton:active{transform:translateY(2px);box-shadow:0 1px 0 #08131f}.topbar{gap:6px!important}.curr{gap:4px!important}@media(max-width:390px){#v613ProfileButton{min-width:45px;padding:0 4px;font-size:6.2px}.chip{padding-left:6px!important;padding-right:6px!important}.brand{font-size:16px!important}}';(d.head||d.documentElement).appendChild(st);
+function openProfile(){try{if(window.__v612Profile&&typeof window.__v612Profile.open==='function'){window.__v612Profile.open();return}}catch(e){}var old=d.getElementById('v612Open');if(old&&old.click){old.click();return}var page=d.getElementById('v612Profile');if(page)page.classList.add('on')}
+function ensure(){var top=d.querySelector('.topbar');if(!top)return;var b=d.getElementById('v613ProfileButton');if(!b){b=d.createElement('button');b.id='v613ProfileButton';b.type='button';b.textContent='PROFILO';b.setAttribute('aria-label','Apri profilo giocatore');var curr=top.querySelector('.curr');if(curr)top.insertBefore(b,curr);else top.appendChild(b);b.onclick=openProfile}var card=d.getElementById('v612ProfileHome');if(card)card.style.display='none'}
+ensure();setTimeout(ensure,250);setTimeout(ensure,800);setInterval(ensure,1600);
+window.__v613ProfileButton={open:openProfile};
+})();
