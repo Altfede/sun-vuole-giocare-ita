@@ -1,0 +1,1 @@
+(function(){'use strict';function apply(){var x=window.__v602Boss&&window.__v602Boss.bosses;if(!x)return false;if(x.neon)x.neon.dmg=18;if(x.magma)x.magma.dmg=16;if(x.frost)x.frost.dmg=18;if(x.void)x.void.dmg=20;if(x.solar)x.solar.dmg=18;return true}if(!apply()){var n=0,t=setInterval(function(){n++;if(apply()||n>30)clearInterval(t)},100)}})();
