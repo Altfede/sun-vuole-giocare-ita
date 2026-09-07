@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.08 Stable Mastery Icons</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.08...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a40c7c08395933c7623bc0d283bd2515f170729/play-v600-map-modifiers-safe.html';
+const ROSTER='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d0a6028f9cc5295936ad6a744fd5e36d966b6492/assets/v601/compact-fighters-menu.js';
+const RANKSTATS='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/19bce913be37e7e94304edc1dff247b2dd582e54/assets/v603/rank-stats-bosses.js';
+const BOSS='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/0cc4b151cf782d11ae0fd0bda687b2a4dd49c816/assets/v603/boss-selector-loader.js';
+const ACH='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/a5050cb989b3fb55ad987cb3d1fa44bf74bca9e2/assets/v603/achievements-expanded-loader.js';
+const TITLES='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/2582cd871bbe16890f25e5831854140ee43dc3c3/assets/v603/titles-expanded-loader.js';
+const MASTERYTOTAL='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1757e4fee8dd0039b54a143e283e460cc7411d47/assets/v605/mastery-stats-no-roster-summary.js';
+const RANKSTATIC='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e3d2f747f9bbcb29a94147de8203f983e3ee8b64/assets/v607/rank-static-tiny.js';
+const MASTERY='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/7b05f2c7b984c3dfcc08928ac824b0c828881d46/assets/v608/mastery-icons-stable-loader.js';
+let h=await(await fetch(BASE)).text();
+const oldAch='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8ba114735d5dc7afdf7b73744de923ec3a37a56b/assets/v598/achievements.js';
+const oldTitles='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/f20711ff45c73c285be23c056bfb39b1953aeb61/assets/v599/player-titles.js';
+const oldMP='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/9f7599c2f46f12bd02151addf08fc5c524893d61/assets/v584/mastery-points-visible.js';
+const oldRank='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8eb4dfbcbda2ed8a77ef2dabf236e6f786a5af5c/assets/v546/rank-icon.js';
+const oldMastery='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/6e929ac269fb1b7d64c0b989968c6bf9a3ace8db/assets/v585/mastery-fixed.js';
+if(!h.includes(oldAch)||!h.includes(oldTitles)||!h.includes(oldMP)||!h.includes(oldRank)||!h.includes(oldMastery))throw new Error('Hook V6.00 non trovato');
+h=h.replace(oldAch,ACH).replace(oldTitles,TITLES).replace(oldMP,MASTERYTOTAL).replace(oldRank,RANKSTATIC).replace(oldMastery,MASTERY);
+const navLine="var compactAsset='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/30ab907871808e94077da3f4a14165cf8b7902c3/assets/v555/nav-compact.js';";
+if(!h.includes(navLine))throw new Error('Hook asset V6.00 non trovato');
+h=h.replace(navLine,navLine+"\nvar rosterCompactAsset='"+ROSTER+"';\nvar rankStatsAsset='"+RANKSTATS+"';\nvar boss603Asset='"+BOSS+"';");
+const extras='function extras(d){';
+if(!h.includes(extras))throw new Error('Hook extras V6.00 non trovato');
+h=h.replace(extras,"function extras(d){add(d,'v601CompactFightersLoader',rosterCompactAsset);add(d,'v603RankStatsLoader',rankStatsAsset);add(d,'v603BossLoader',boss603Asset);");
+h=h.replaceAll('V6.00','V6.08');
+h=h.replace('MAP MODIFIERS','STABLE MASTERY ICONS');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.08: '+e.message}})();</script>
