@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.18 Missions Bridge</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.18...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/533094a130edef990fd8a0fa6752f825c15b215a/play-v615-clean-nav-final-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/ca66dbb5b26d0658093e8f9035d9197b19e14cc0/assets/v615/navigation-cleanup-final.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/4b5e1f0895f6c79dfe2136d172e356c32caba0df/assets/v618/navigation-missions-bridge.js';
+let h=await(await fetch(BASE)).text();
+if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.15 non caricata');
+if(!h.includes(OLD))throw new Error('Asset clean V6.15 non trovato');
+h=h.replace(OLD,NEW).replaceAll('V6.15','V6.18').replace('CLEAN NAV FINAL','MISSIONS BRIDGE');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.18: '+e.message}})();</script>
