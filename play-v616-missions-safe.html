@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.16 Missions</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.16...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/533094a130edef990fd8a0fa6752f825c15b215a/play-v615-clean-nav-final-safe.html';
+const PRE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/b7a92b26892e57191595092fd4c4c00f94b913ef/play-v616-missions-preload.html';
+const ACH='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/050db9b1d84c9cd59b1fac86aec9298dc7602b78/assets/v616/achievements-mastery-fixed-loader.js';
+const MISSIONS='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1f8b1a4fd4dc787e5773f77b99e1900a0b8652cf/assets/v616/missions-hub.js';
+let h=await(await fetch(BASE)).text();
+const oldPre="const AI_PRELOAD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e3161f3e1bc02b85a92a4bf1bb4fa5341c9aa062/play-v610-bot-ai-preload.html';";
+const oldAch="const ACH='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/a5050cb989b3fb55ad987cb3d1fa44bf74bca9e2/assets/v603/achievements-expanded-loader.js';";
+if(!h.includes(oldPre)||!h.includes(oldAch))throw new Error('Hook V6.15 non trovato');
+h=h.replace(oldPre,"const AI_PRELOAD='"+PRE+"';");
+h=h.replace(oldAch,"const ACH='"+ACH+"';");
+const cleanConst="const CLEAN='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/ca66dbb5b26d0658093e8f9035d9197b19e14cc0/assets/v615/navigation-cleanup-final.js';";
+if(!h.includes(cleanConst))throw new Error('Hook CLEAN V6.15 non trovato');
+h=h.replace(cleanConst,cleanConst+"\nconst MISSIONS='"+MISSIONS+"';");
+const cleanAsset="var cleanNavAsset='"+'"+CLEAN+"'+"';";
+if(!h.includes(cleanAsset))throw new Error('Hook cleanNavAsset non trovato');
+h=h.replace(cleanAsset,cleanAsset+"\nvar missions616Asset='"+'"+MISSIONS+"'+"';");
+const loadHook="add(d,'v615CleanNavLoader',cleanNavAsset);";
+if(!h.includes(loadHook))throw new Error('Hook loader V6.15 non trovato');
+h=h.replace(loadHook,loadHook+"add(d,'v616MissionsLoader',missions616Asset);");
+h=h.replaceAll('V6.15','V6.16');h=h.replace('CLEAN NAV FINAL','MISSIONS HUB');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.16: '+e.message}})();</script>
