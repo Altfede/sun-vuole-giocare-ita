@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.14 Clean Navigation</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.14...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/2f0ac6c358670e3298a6cb34a8efbaec7eb42e26/play-v612-player-profile-safe.html';
+const CLEAN='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/ef1e0b7a92ec9308dbb5df845e04ca171aadb714/assets/v614/navigation-cleanup.js';
+let h=await(await fetch(BASE)).text();
+const hook='document.open();document.write(h);document.close();';
+if(!h.includes(hook))throw new Error('Hook finale V6.12 non trovato');
+const inject="h=h.replace('</body>','<script id=\"v614NavCleanupLoader\" src=\""+CLEAN+"\"></'+'script></body>');document.open();document.write(h);document.close();";
+h=h.replace(hook,inject);
+h=h.replaceAll('V6.12','V6.14');h=h.replace('PLAYER PROFILE','CLEAN NAVIGATION');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.14: '+e.message}})();</script>
