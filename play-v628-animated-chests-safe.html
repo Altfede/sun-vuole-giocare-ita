@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.28 Animated Chests</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.28...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/5eb1cc6dfb6cbd3e902078442bf6af97734e00ad/play-v625-shop-inline-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/85f2f702ff41175465b5fc85b92cf3ecf6868b66/assets/v625/all-in-one-shop-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d91b81a11cd0e82396c60d48ba381c8360b8f451/assets/v628/shop-chest-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.25 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.25 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.25','V6.28').replace('SHOP INLINE','ANIMATED CHESTS');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.28: '+e.message}})();</script>
