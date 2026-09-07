@@ -1,0 +1,20 @@
+(function(){'use strict';
+if(window.__starBrawl578VisibilityFix)return;window.__starBrawl578VisibilityFix=true;
+var d=document;
+var st=d.createElement('style');st.id='v578VisibilityStyle';st.textContent=`
+.v575SuperDot{display:none!important}
+.card>.badge{display:block!important;z-index:80!important;right:5px!important;top:5px!important;background:#101827e8!important;color:#fff!important;box-shadow:0 2px 8px #0009!important}
+.v575KitBadge{position:relative!important;margin-top:6px!important;padding:6px 7px!important;border:1px solid #526782!important;background:#0b1422!important;font-size:7.5px!important;line-height:1.3!important}
+.v575KitBadge:before{content:'SUPER';display:inline-block;margin-right:5px;padding:2px 4px;border-radius:5px;background:linear-gradient(135deg,#ffe24d,#ff8b28);color:#20150b;font:1000 6.5px Arial}
+#v578BattleStatus{margin:5px 0 0;padding:5px 8px;border-radius:7px;background:#08111dcc;border:1px solid #536d91;color:#bdeaff;font:900 8px Arial;text-align:center;letter-spacing:.3px}
+.v550Shot{height:9px!important;box-shadow:0 0 15px currentColor,0 0 24px currentColor!important;animation-duration:.48s!important}
+.v575SuperMini{height:7px!important;top:8px!important;box-shadow:0 0 9px #ffd34f88!important}
+`;(d.head||d.documentElement).appendChild(st);
+function removeDots(){var x=d.querySelectorAll('.v575SuperDot');for(var i=0;i<x.length;i++)x[i].remove()}
+function protectCups(){var cards=d.querySelectorAll('.card');for(var i=0;i<cards.length;i++){var b=cards[i].querySelector(':scope > .badge');if(b){b.style.display='block';b.style.zIndex='80'}}}
+function battleStatus(){var hud=d.querySelector('#battleScreen .hud');if(hud&&!d.getElementById('v578BattleStatus')){var e=d.createElement('div');e.id='v578BattleStatus';e.textContent=(window.__v577StandardPatched?'FX ATTACCHI + SUPER: ATTIVI':'FX ATTACCHI: CARICAMENTO...');hud.insertBefore(e,hud.firstChild)}var e=d.getElementById('v578BattleStatus');if(e&&window.__v577StandardPatched)e.textContent='FX ATTACCHI + SUPER: ATTIVI'}
+function amplifyCanvas(){var c=d.getElementById('arena');if(!c||c.__v578Amp)return;var ctx=c.getContext&&c.getContext('2d');if(!ctx)return;c.__v578Amp=true;var oldStroke=ctx.stroke.bind(ctx);ctx.stroke=function(){var glow=(+this.shadowBlur||0)>=8,oldW=this.lineWidth,oldB=this.shadowBlur,oldA=this.globalAlpha;if(glow){this.globalAlpha=Math.min(1,Math.max(.45,oldA*.72));this.lineWidth=Math.max(oldW*2.25,7);this.shadowBlur=Math.max(oldB*1.8,22);oldStroke();this.globalAlpha=oldA;this.lineWidth=oldW;this.shadowBlur=oldB}return oldStroke()};var oldFillText=ctx.fillText.bind(ctx);ctx.fillText=function(text,x,y,max){if(typeof text==='string'&&text.indexOf('★ ')===0){var of=this.font,oa=this.globalAlpha,ob=this.shadowBlur,oc=this.shadowColor;this.font='1000 26px Arial';this.globalAlpha=1;this.shadowBlur=18;this.shadowColor='#ffcf3b';if(max==null)oldFillText(text,x,y);else oldFillText(text,x,y,max);this.font=of;this.globalAlpha=oa;this.shadowBlur=ob;this.shadowColor=oc;return}return max==null?oldFillText(text,x,y):oldFillText(text,x,y,max)};}
+function amplifyCustomFx(){var a=d.querySelector('.v550Arena');if(!a||a.__v578Obs)return;a.__v578Obs=true;var mo=new MutationObserver(function(ms){for(var m=0;m<ms.length;m++)for(var i=0;i<ms[m].addedNodes.length;i++){var n=ms[m].addedNodes[i];if(!n||n.nodeType!==1||n.classList.contains('v550Unit')||n.classList.contains('v550Gem')||n.classList.contains('v550Zone')||n.classList.contains('v550Ball'))continue;var z=parseInt(n.style.zIndex||'0',10);if(z>=6&&n.style.pointerEvents==='none'){n.style.filter='brightness(1.35) drop-shadow(0 0 9px currentColor)';n.style.opacity='1';if(n.style.height&&parseFloat(n.style.height)<10)n.style.height='10px';if(n.style.borderWidth&&parseFloat(n.style.borderWidth)<5)n.style.borderWidth='5px'}}});mo.observe(a,{childList:true})}
+function scan(){try{removeDots();protectCups();battleStatus();amplifyCanvas();amplifyCustomFx()}catch(e){}}
+scan();setTimeout(scan,300);setTimeout(scan,900);setInterval(scan,800);
+})();
