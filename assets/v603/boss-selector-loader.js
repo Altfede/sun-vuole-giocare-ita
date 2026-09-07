@@ -1,0 +1,41 @@
+(function(){'use strict';
+if(window.__starBrawl603BossLoader)return;window.__starBrawl603BossLoader=true;
+var SRC='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/026c7aa7d6b5336019fd3cd96d5ff65b0622d7ce/assets/v602/boss-fight.js';
+fetch(SRC).then(function(r){if(!r.ok)throw new Error('Boss Fight base non caricabile');return r.text()}).then(function(src){
+src=src.replace("if(window.__starBrawl602BossFight)return;window.__starBrawl602BossFight=true;","if(window.__starBrawl603BossFight)return;window.__starBrawl603BossFight=true;");
+var bosses=String.raw`var BOSSES={
+orbit:{id:'flux',name:'COLOSSUS ORBIT',sub:'Nucleo gravitazionale instabile',hp:3300,dmg:44,type:'slam',c:'#4ff6ff',diff:'DIFFICILE'},
+pyre:{id:'pyre',name:'INFERNAL PYRE',sub:'Drago della fonderia',hp:3050,dmg:46,type:'fire',c:'#ff7b22',diff:'DIFFICILE'},
+neptune:{id:'nimbus',name:'LEVIATHAN NEPTUNE',sub:'Signore della marea gelida',hp:3200,dmg:45,type:'wave',c:'#8deaff',diff:'DIFFICILE'},
+null:{id:'null9',name:'TITAN NULL',sub:'Entita oltre il vuoto',hp:2850,dmg:49,type:'void',c:'#b875ff',diff:'INCUBO'},
+solara:{id:'solara',name:'SOLAR EMPRESS',sub:'Cuore vivente delle rovine',hp:3000,dmg:47,type:'beam',c:'#ffe063',diff:'DIFFICILE'},
+rime:{id:'rime',name:'FROST TYRANT RIME',sub:'Re del permafrost',hp:2950,dmg:43,type:'wave',c:'#bff8ff',diff:'NORMALE'},
+garnet:{id:'jinx',name:'GARNET CRUSHER',sub:'Pugni da fusione incontrollata',hp:3500,dmg:45,type:'slam',c:'#ff4f86',diff:'DIFFICILE'},
+sound:{id:'echo',name:'SONIC OVERLORD',sub:'Frequenza distruttiva',hp:2750,dmg:42,type:'wave',c:'#ff66ee',diff:'NORMALE'},
+boar:{id:'tusk',name:'BOAR WARLORD',sub:'Carica corazzata del cinghiale',hp:3800,dmg:48,type:'slam',c:'#72a9ff',diff:'INCUBO'},
+astra:{id:'astra',name:'ASTRA PRIME',sub:'Cecchino astrale supremo',hp:2650,dmg:50,type:'beam',c:'#ffd65c',diff:'INCUBO'}
+};`;
+var bre=/var BOSSES=\{[\s\S]*?\n\};/;
+if(!bre.test(src))throw new Error('Lista boss base non trovata');src=src.replace(bre,bosses);
+var helper=String.raw`
+var __v603MapBoss={neon:'orbit',magma:'pyre',frost:'neptune',void:'null',solar:'solara'};
+function bossPick(){var s=read(KEY),k=s.selectedBoss;if(!BOSSES[k])k=__v603MapBoss[mapId()]||'orbit';return{key:k,cfg:BOSSES[k]}}
+function chooseBoss(k){if(!BOSSES[k])return;var s=read(KEY);s.selectedBoss=k;write(KEY,s);var p=d.getElementById('v603BossPicker');if(p)p.classList.remove('on');home()}
+function bossPicker(){var p=d.getElementById('v603BossPicker');if(!p){p=d.createElement('div');p.id='v603BossPicker';p.innerHTML='<div class="v603BossSheet"><div class="v603BossPickTop"><div><small>10 BOSS DISPONIBILI</small><h2>SCEGLI BOSS</h2></div><button id="v603BossClose">×</button></div><div id="v603BossGrid"></div></div>';d.body.appendChild(p);p.querySelector('#v603BossClose').onclick=function(){p.classList.remove('on')};p.onclick=function(e){if(e.target===p)p.classList.remove('on');var b=e.target.closest&&e.target.closest('[data-v603-boss]');if(b)chooseBoss(b.getAttribute('data-v603-boss'))}}var z=read(KEY),kills=z.kills||{},cur=bossPick().key,html='';Object.keys(BOSSES).forEach(function(k){var b=BOSSES[k],on=k===cur;html+='<button class="v603BossCard '+(on?'on':'')+'" data-v603-boss="'+k+'"><div class="v603BossArt">'+artFor(b.id)+'</div><div class="v603BossCardTxt"><b>'+b.name+'</b><span>'+b.diff+' · '+(kills[k]||0)+' UCCISIONI</span><small>'+b.sub+'</small></div><strong>'+(on?'SCELTO':'SCEGLI')+'</strong></button>'});p.querySelector('#v603BossGrid').innerHTML=html;return p}
+function openBossPicker(){bossPicker().classList.add('on')}
+var __v603BossCss=d.createElement('style');__v603BossCss.id='v603BossPickerStyle';__v603BossCss.textContent='#v603BossPicker{position:fixed;inset:0;z-index:2147483300;display:none;align-items:flex-end;justify-content:center;background:#050912e8;padding:12px calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));font-family:Arial;color:#fff}#v603BossPicker.on{display:flex}.v603BossSheet{width:min(620px,100%);max-height:91vh;overflow:auto;background:linear-gradient(180deg,#1b2941,#0d1525);border:2px solid #ff6f8f;border-radius:20px;padding:12px;box-shadow:0 -15px 55px #000b}.v603BossPickTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}.v603BossPickTop small{font:1000 7px Arial;color:#ff8da6;letter-spacing:1px}.v603BossPickTop h2{margin:2px 0 0;font:1000 23px Arial}.v603BossPickTop button{width:42px;height:42px;border-radius:11px;border:1px solid #ffffff44;background:#293951;color:#fff;font-size:24px}#v603BossGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.v603BossCard{min-width:0;min-height:96px;display:grid;grid-template-columns:62px 1fr;grid-template-rows:1fr auto;gap:5px 7px;text-align:left;padding:8px;border:2px solid #334b68;border-radius:13px;background:linear-gradient(135deg,#17263d,#111b2d);color:#fff}.v603BossCard.on{border-color:#ffe05b;box-shadow:0 0 0 2px #ffe05b2b}.v603BossArt{grid-row:1/3;width:62px;height:76px;display:grid;place-items:center;overflow:hidden}.v603BossArt .doll{transform:scale(.72)!important}.v603BossArt svg,.v603BossArt img{width:58px!important;height:58px!important;max-width:58px!important;max-height:58px!important}.v603BossCardTxt{min-width:0}.v603BossCardTxt b{display:block;font:1000 9px Arial;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v603BossCardTxt span{display:block;margin-top:2px;font:900 6.5px Arial;color:#ff9db0}.v603BossCardTxt small{display:block;margin-top:3px;font:800 6.5px Arial;color:#aebed1;line-height:1.2}.v603BossCard strong{font:1000 7px Arial;color:#ffe05b}@media(max-width:380px){#v603BossGrid{grid-template-columns:1fr}}#v602BossHome .v603BossBtns{display:flex;gap:5px}.v603ChooseBoss{border:1px solid #ff8da6;border-radius:9px;background:#281828;color:#ffb1c0;font:1000 7px Arial;padding:8px 9px}';(d.head||d.documentElement).appendChild(__v603BossCss);
+function home(){var h=d.getElementById('homeScreen');if(!h)return;var pick=bossPick(),b=pick.cfg,e=d.getElementById('v602BossHome'),st=read(KEY),kills=st.kills||{};if(!e){e=d.createElement('div');e.id='v602BossHome';var a=d.getElementById('v599TitleHome')||d.getElementById('v598AchHome')||h.querySelector('.hero');if(a&&a.parentNode)a.parentNode.insertBefore(e,a.nextSibling);else h.insertBefore(e,h.firstChild)}e.innerHTML='<div class="v602HomeTop"><div class="v602Skull">☠</div><div class="v602HomeTxt"><div class="v602HomeK">BOSS FIGHT · 10 BOSS</div><div class="v602HomeN">'+b.name+'</div><div class="v602HomeS">'+b.sub+' · '+b.diff+' · '+(kills[pick.key]||0)+' uccisioni</div></div><div class="v603BossBtns"><button id="v603ChooseBoss" class="v603ChooseBoss">SCEGLI</button><button id="v602Start" class="v602Play">COMBATTI</button></div></div>';var x=d.getElementById('v602Start');if(x)x.onclick=start;var c=d.getElementById('v603ChooseBoss');if(c)c.onclick=openBossPicker}
+`;
+var hre=/function home\(\)\{[\s\S]*?\}\nfunction makeGame\(\)/;
+if(!hre.test(src))throw new Error('Home Boss Fight non trovata');src=src.replace(hre,helper+'function makeGame()');
+var startNeed="var cfg=BOSSES[mapId()]||BOSSES.void,p1=unit(ids[0],0,ar),p2=unit(ids[1],1,ar),be=bossEl(cfg,ar),boss={";
+if(src.indexOf(startNeed)<0)throw new Error('Selezione boss start non trovata');
+src=src.replace(startNeed,"var bp=bossPick(),cfg=bp.cfg,p1=unit(ids[0],0,ar),p2=unit(ids[1],1,ar),be=bossEl(cfg,ar),boss={");
+src=src.replace("sim={running:true,time:90","sim={bossKey:bp.key,running:true,time:90");
+var rewardNeed="if(win){s.wins++;var first=s.lastDaily!==today;";
+if(src.indexOf(rewardNeed)<0)throw new Error('Reward boss non trovato');
+src=src.replace(rewardNeed,"if(win){s.wins++;s.kills=s.kills||{};s.kills[sim.bossKey]=Math.max(0,+s.kills[sim.bossKey]||0)+1;var first=s.lastDaily!==today;");
+src=src.replace("window.__v602Boss={start:start,bosses:BOSSES};","window.__v603Boss={start:start,bosses:BOSSES,choose:chooseBoss,current:bossPick};");
+(0,eval)(src+'\n//# sourceURL=starbrawl-v603-boss-selector.js');
+}).catch(function(e){var x=document.createElement('div');x.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:2147483647;background:#681b27;color:#fff;padding:10px;border-radius:10px;font:700 11px Arial';x.textContent='Errore Boss V6.03: '+e.message;document.body.appendChild(x)});
+})();
