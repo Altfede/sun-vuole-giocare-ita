@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.22 Titles + Shop Fix</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.22...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d1cbd9d6e50b96695729f8e10f3fa6bfd7dbb46b/play-v620-titles-button-only-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/6d7c5b4fa3c9b7e17703e5c7145b62e14f3b65fa/assets/v620/navigation-missions-titles-nohome-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/25d6542ca5e1e7877eff74eaa7a0667c8695b4a8/assets/v622/navigation-fixed-shop-bridge.js';
+let h=await(await fetch(BASE)).text();
+if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.20 non caricata');
+if(!h.includes(OLD))throw new Error('Bridge V6.20 non trovato');
+h=h.replace(OLD,NEW).replaceAll('V6.20','V6.22').replace('TITLES BUTTON ONLY','TITLES + SHOP FIX');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.22: '+e.message}})();</script>
