@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.05 No Mastery Summary</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.05...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/71d65593f0335aaa5716991c6117b4b5929eefa3/play-v604-mastery-total-stats-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/35d05c68bf473ec028650a46dd8db4c8ba3ea1f6/assets/v604/mastery-total-stats.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1757e4fee8dd0039b54a143e283e460cc7411d47/assets/v605/mastery-stats-no-roster-summary.js';
+let h=await(await fetch(BASE)).text();
+if(!h.includes(OLD))throw new Error('Hook Mastery Stats V6.04 non trovato');
+h=h.replace(OLD,NEW).replaceAll('V6.04','V6.05').replace('Mastery Stats','No Mastery Summary');
+document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.05: '+e.message}})();</script>
