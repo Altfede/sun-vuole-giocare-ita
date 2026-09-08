@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.29 Chest Spend Fix</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.29...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/fd7e910d3a9b8c35243d7ba9c8c52305f1574b2a/play-v628-animated-chests-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/d91b81a11cd0e82396c60d48ba381c8360b8f451/assets/v628/shop-chest-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/c661a1c1e6445ec0c57d943fc39acf555e1903d5/assets/v629/shop-chest-spend-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.28 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.28 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.28','V6.29').replace('ANIMATED CHESTS','CHEST SPEND FIX');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.29: '+e.message}})();</script>
