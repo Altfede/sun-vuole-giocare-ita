@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.37 Event Nav Only</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.37...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/8a5ab3eb038b83770c6e514a61c36f6819ccc029/play-v636-event-nav-celestial-mastery-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/93a77a0535d238a35accfb2ab1949cc651105a8c/assets/v636/events-mastery-nav-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/705036a2b03032327d0747ec5520392ee9d8108a/assets/v637/event-nav-only-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.36 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.36 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.36','V6.37').replace('EVENT NAV + CELESTIAL MASTERY','EVENT NAV ONLY');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.37: '+e.message}})();</script>
