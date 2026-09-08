@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.34 Normal Pass 100</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.34...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/3121f93476ce11cf1f10e8528bfde28d55f9028f/play-v633-ranked-pass-achievements-titles-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1cfe0e7fb39de929097de0ec569f5d9611dfa3aa/assets/v633/progression-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/724a2515d7c35e1a352157561d3d372f6ebbad4c/assets/v634/progression-normal-pass-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.33 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.33 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.33','V6.34').replace('PROGRESSION EXPANSION','NORMAL PASS 100');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.34: '+e.message}})();</script>
