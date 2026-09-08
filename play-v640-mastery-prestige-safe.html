@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.40 Mastery Prestige</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.40...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/7556d09a5b2675a67f40975e4b92820065021439/play-v639-event-shop-visible-fix-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/298669a4e88ec20d27a70dc0aed1a51772f75854/assets/v639/event-shop-visible-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/6d7c9d363545d00cb2b65218fc929acfd5f01a7b/assets/v640/mastery-prestige-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.39 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.39 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.39','V6.40').replace('EVENT SHOP VISIBLE FIX','MASTERY PRESTIGE');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.40: '+e.message}})();</script>
