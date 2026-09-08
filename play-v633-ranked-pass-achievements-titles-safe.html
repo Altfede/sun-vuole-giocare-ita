@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.33 Progression Expansion</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.33...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/39496646e0bcfd70856c70542eef376511a9f9fb/play-v632-ranked-season-button-stable-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/08f9dd298df0840a9c3ec6862a493192fdd2f5d9/assets/v632/ranked-seasons-stable-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1cfe0e7fb39de929097de0ec569f5d9611dfa3aa/assets/v633/progression-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.32 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.32 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.32','V6.33').replace('RANKED SEASON STABLE','PROGRESSION EXPANSION');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.33: '+e.message}})();</script>
