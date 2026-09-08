@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.35 Limited Events + Mastery</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.35...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/52565f16f5258617edcaeed4d401c7991e74c2ad/play-v634-normal-pass-100-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/724a2515d7c35e1a352157561d3d372f6ebbad4c/assets/v634/progression-normal-pass-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/7d7ea2a4145bde61a31bf00edcf7081dc2627a9c/assets/v635/events-mastery-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.34 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.34 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.34','V6.35').replace('NORMAL PASS 100','LIMITED EVENTS + MASTERY');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.35: '+e.message}})();</script>
