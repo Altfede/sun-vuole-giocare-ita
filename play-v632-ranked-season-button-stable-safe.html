@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.32 Ranked Season Stable</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.32...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/27dc71faeeae02bc57fc7a20c80b3d554ba4c5af/play-v631-ranked-seasons-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e17cce99e1b74c6a80465ff3ba366b27f1ed8f0a/assets/v631/ranked-seasons-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/08f9dd298df0840a9c3ec6862a493192fdd2f5d9/assets/v632/ranked-seasons-stable-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.31 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.31 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.31','V6.32').replace('RANKED SEASONS','RANKED SEASON STABLE');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.32: '+e.message}})();</script>
