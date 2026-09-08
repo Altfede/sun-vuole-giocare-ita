@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.31 Ranked Seasons</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.31...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/ca23acbafa4acb258395fe0c6757a8e4dab5ffdf/play-v630-editable-profile-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/efb58378c201d37e99d78941ba4afeccb57a210e/assets/v630/profile-editor-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e17cce99e1b74c6a80465ff3ba366b27f1ed8f0a/assets/v631/ranked-seasons-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.30 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.30 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.30','V6.31').replace('EDITABLE PROFILE','RANKED SEASONS');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.31: '+e.message}})();</script>
