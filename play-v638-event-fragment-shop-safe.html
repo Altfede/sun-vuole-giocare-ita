@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.38 Event Fragment Shop</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.38...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/1148e63cddffaccc59fb38b1730006b361436d2a/play-v637-event-nav-only-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/705036a2b03032327d0747ec5520392ee9d8108a/assets/v637/event-nav-only-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/cd9073dddba58628740cf45be949644b099ca548/assets/v638/event-shop-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.37 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.37 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.37','V6.38').replace('EVENT NAV ONLY','EVENT FRAGMENT SHOP');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.38: '+e.message}})();</script>
