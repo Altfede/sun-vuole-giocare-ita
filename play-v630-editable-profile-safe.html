@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.30 Editable Profile</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.30...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/f26657c0a9cd17edf1f93078838bda79e1700ced/play-v629-chest-spend-fix-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/c661a1c1e6445ec0c57d943fc39acf555e1903d5/assets/v629/shop-chest-spend-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/efb58378c201d37e99d78941ba4afeccb57a210e/assets/v630/profile-editor-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.29 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.29 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.29','V6.30').replace('CHEST SPEND FIX','EDITABLE PROFILE');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.30: '+e.message}})();</script>
