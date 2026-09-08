@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.42 Win Streak Profile + Prestige Total</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.42...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/0876ef066d8349c503bdad4f5e9c2cad36ffbe2e/play-v641-win-streak-prestige-stats-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/7962c24b4f7de98de7a6dd4c4afe81306d318fc2/assets/v641/winstreak-prestige-stats-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/e7e280f29f9cfde31c5bb3604a37859a188428f8/assets/v642/winstreak-profile-prestige-total-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.41 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.41 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.41','V6.42').replace('WIN STREAK + PRESTIGE STATS','WIN STREAK PROFILE + PRESTIGE TOTAL');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.42: '+e.message}})();</script>
