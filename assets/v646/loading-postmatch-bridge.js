@@ -1,0 +1,7 @@
+(function(){'use strict';
+if(window.__starBrawl646Bridge)return;window.__starBrawl646Bridge=true;
+var d=document;
+function add(id,src){if(d.getElementById(id))return;var s=d.createElement('script');s.id=id;s.src=src;s.async=false;(d.head||d.documentElement).appendChild(s)}
+add('v646Base','https://raw.githack.com/Altfede/sun-vuole-giocare-ita/2ca7b23c81d7f21af82bd315924512577638035a/assets/v645/mastery-stats-native-icon-bridge.js');
+add('v646LoadingPostmatch','https://raw.githack.com/Altfede/sun-vuole-giocare-ita/598d0ddc3e0e53e2743b9a6cba7849a99f353f17/assets/v646/loading-postmatch-final.js');
+})();
