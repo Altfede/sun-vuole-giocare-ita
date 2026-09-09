@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><title>StarBrawl V6.43 Win Streak Missions</title><body style="margin:0;background:#0d1320;color:#fff;font-family:Arial"><div id="l" style="padding:24px;font-weight:900">Caricamento StarBrawl V6.43...</div><script>(async()=>{try{
+const BASE='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/f6435c6a0d1e4ea5286c500899590face7c9d62b/play-v640-mastery-prestige-safe.html';
+const OLD='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/6d7c9d363545d00cb2b65218fc929acfd5f01a7b/assets/v640/mastery-prestige-bridge.js';
+const NEW='https://raw.githack.com/Altfede/sun-vuole-giocare-ita/022ada49f91fefe5f9fee3399c405d502bf75ae6/assets/v643/streak-missions-bridge.js';
+let h=await(await fetch(BASE)).text();if(!h||h.indexOf('StarBrawl')<0)throw new Error('Base V6.40 non caricata');if(!h.includes(OLD))throw new Error('Bridge V6.40 non trovato');h=h.replace(OLD,NEW).replaceAll('V6.40','V6.43').replace('MASTERY PRESTIGE','WIN STREAK MISSIONS');document.open();document.write(h);document.close();
+}catch(e){document.getElementById('l').textContent='Errore V6.43: '+e.message}})();</script>
