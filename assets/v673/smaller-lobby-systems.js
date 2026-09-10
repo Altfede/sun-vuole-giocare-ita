@@ -1,0 +1,22 @@
+(function(){'use strict';if(window.__starBrawl673SmallerSystems)return;window.__starBrawl673SmallerSystems=true;function addStyle(d){if(!d||d.getElementById('v673SmallerSystemsStyle'))return;var s=d.createElement('style');s.id='v673SmallerSystemsStyle';s.textContent=`
+body.v668Home #v672SystemsDock{left:50%!important;right:auto!important;top:5px!important;width:min(66%,620px)!important;transform:translateX(-50%)!important;gap:4px!important}
+body.v668Home #v672SystemsDock #v602BossHome,body.v668Home #v672SystemsDock #v610AIBox,body.v668Home #v672SystemsDock #v590RankedPanel{min-height:48px!important;padding:4px!important;border-radius:8px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v602HomeTop{gap:4px!important;min-height:36px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v602Skull{width:26px!important;height:26px!important;flex:0 0 26px!important;font-size:14px!important;border-radius:7px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v602HomeK{font-size:5.4px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v602HomeN{font-size:8px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v602HomeS{font-size:5px!important}
+body.v668Home #v672SystemsDock #v602BossHome .v603ChooseBoss,body.v668Home #v672SystemsDock #v602BossHome .v602Play{min-height:25px!important;height:25px!important;padding:3px 5px!important;font-size:5.5px!important;border-radius:6px!important}
+body.v668Home #v672SystemsDock #v610AIBox .v610AITop{gap:4px!important;min-height:36px!important}
+body.v668Home #v672SystemsDock #v610AIBox .v610AITitle{font-size:7px!important}
+body.v668Home #v672SystemsDock #v610AIBox .v610AISub{font-size:5px!important}
+body.v668Home #v672SystemsDock #v610AIBox .v610AISelect{max-width:82px!important;min-height:25px!important;padding:3px 4px!important;font-size:6px!important;border-radius:6px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v590Head{gap:4px!important;min-height:21px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v590Emblem{width:23px!important;height:23px!important;flex:0 0 23px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v590Kicker{font-size:5px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v590Division{font-size:8px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v590RP{font-size:5.8px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel .v631Actions{gap:3px!important;margin-top:3px!important}
+body.v668Home #v672SystemsDock #v590RankedPanel #v590RankedPlay,body.v668Home #v672SystemsDock #v590RankedPanel #v631SeasonBtn{min-height:24px!important;height:24px!important;padding:2px 4px!important;font-size:5.7px!important;border-radius:6px!important}
+@media(max-width:650px){body.v668Home #v672SystemsDock{width:min(64%,520px)!important;top:4px!important;gap:3px!important}body.v668Home #v672SystemsDock #v602BossHome,body.v668Home #v672SystemsDock #v610AIBox,body.v668Home #v672SystemsDock #v590RankedPanel{min-height:43px!important;padding:3px!important}body.v668Home #v672SystemsDock #v602BossHome .v602HomeTop,body.v668Home #v672SystemsDock #v610AIBox .v610AITop{min-height:32px!important}body.v668Home #v672SystemsDock #v602BossHome .v603ChooseBoss,body.v668Home #v672SystemsDock #v602BossHome .v602Play,body.v668Home #v672SystemsDock #v590RankedPanel #v590RankedPlay,body.v668Home #v672SystemsDock #v590RankedPanel #v631SeasonBtn{height:22px!important;min-height:22px!important;font-size:5.1px!important}body.v668Home #v672SystemsDock #v610AIBox .v610AISelect{min-height:22px!important;height:22px!important;max-width:70px!important;font-size:5.4px!important}}
+`;(d.head||d.documentElement).appendChild(s)}function version(d){try{d.title=(d.title||'').replace(/V6\.72|V6\.71|V6\.70|V6\.69|V6\.68|V6\.67|V6\.66|V5\.28\.2/g,'V6.73');var b=d.querySelector('.brand');if(b)b.innerHTML=b.innerHTML.replace(/V6\.72|V6\.71|V6\.70|V6\.69|V6\.68|V6\.67|V6\.66|V5\.28\.2/g,'V6.73')}catch(e){}}function scan(d){if(!d)return;try{if(d.getElementById('homeScreen'))addStyle(d);version(d)}catch(e){}var fs=[];try{fs=d.querySelectorAll('iframe')}catch(e){}for(var i=0;i<fs.length;i++){try{scan(fs[i].contentDocument||fs[i].contentWindow.document)}catch(e){}}}function tick(){scan(document)}tick();setTimeout(tick,120);setTimeout(tick,400);setTimeout(tick,1000);setInterval(tick,300)})();
